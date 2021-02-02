@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block main%}
+
+
+<div class="container">
+
+
+<div class="card" style="width: 48rem;">
+  <img src="{{posts.image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{posts.title}}</h5>
+    <p class="card-text">{{posts.content}}</p>
+    <a href="{%url 'delete_view' posts.id %}" class="btn btn-danger" onclick="return confirm('are you sure to delete?')" >Delete</a>
+    <a href="{%url 'update_view' posts.id %}" class="btn btn-primary">Update</a>
+  </div>
+</div>
+</div>
+
+{%endblock%}

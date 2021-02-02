@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{%load static%}
+
+
+  {%block main%}
+
+
+{%for post in posts %}
+<div class="container">
+
+
+<div class="card" style="width: 48rem;">
+  <img src="{{post.image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.content}}</p>
+    <a href="{% url 'detail_view' post.id %}" class="btn btn-primary">more</a>
+  </div>
+</div>
+
+
+
+</div>
+
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+            <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+{%endblock%}
